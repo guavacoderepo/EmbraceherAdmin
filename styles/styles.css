@@ -1,0 +1,273 @@
+/* General styling for the body */
+*{
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Poppins;
+    position: relative;
+}
+
+/* Navigation styling */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background: url("../assets/circle.jpg");
+    background-size: cover;
+    color: white;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+}
+
+nav h3 a {
+    text-decoration: none;
+    color: unset;
+}
+
+.admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#adminIcon {
+    width: 70px;
+    height: 70px;
+    margin-right: 1em;
+    border-radius: 50%;
+    background: white;
+}
+
+#adminImg {
+    width: 100%;
+    height: 90%;
+}
+
+/* Side navigation */
+aside {
+    position: fixed;
+    top: 20%;
+    width: 20%;
+    margin-left: -2%;
+    font-size: 14px;
+    /* background: rebeccapurple; */
+}
+
+aside ul {
+    list-style-type: none;
+}
+
+aside ul li {
+    padding: 10px 0;
+}
+
+aside ul li i {
+    color: #04A6FB;
+    display: inline-block;
+    margin-right: 10px;
+    width: 15px;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: unset;
+}
+
+aside ul li a:hover {
+    font-weight: bolder;
+}
+
+#index {
+    font-weight: bolder;
+}
+
+/* Main body */
+.main {
+    width: 80%;
+    position: absolute;
+    right: 0rem;
+    top: 6.7rem;
+}
+
+.course-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 2%;
+}
+
+#all {
+    background-color: #13A7E7;
+    color: white;
+    border: none;
+}
+
+#search {
+    outline: none;
+    height: 25px;
+    margin: 0 3px;
+}
+
+::placeholder {
+    font-family: Poppins;
+}
+
+.filter-options {
+    display: flex;
+    align-items: center;
+}
+
+.filter-options button {
+    background: white;
+    border: 0.5px solid lightgray;
+    border-radius: 3px;
+    padding: 3px 13px;
+    margin: 0 3px;
+    font-size: 10px;
+    font-family: Poppins;
+    cursor: pointer;
+}
+
+#course-image {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin: 0px 10px;
+}
+
+.bar {
+    fill: #15A8ED;
+}
+
+#chart {
+    scale: 0.5;
+    position: absolute;
+    top: 0px;
+    left: -140px;
+}
+
+/* #chart-two {
+    scale: 0.5;
+    position: absolute;
+    top: 0px;
+    left: -80px;
+}
+
+#chart-three {
+    scale: 0.5;
+    position: relative;
+    top: 50px;
+    left: -80px;
+}
+
+#chart-four {
+    scale: 0.5;
+    position: relative;
+    top: 200px;
+    left: -80px;
+} */
+
+.first-user {
+    position: relative;
+}
+
+/* .second-user {
+    position: relative;
+    left: 40%;
+}
+
+.third-user {
+    position: absolute;
+    top: 300%;
+}
+
+.fourth-user {
+    position: absolute;
+    top: 300%;
+    left: 47.5%;
+} */
+
+.main-main {
+    display: flex;
+    padding: 0px 30px;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 90%;
+    margin: auto;
+}
+
+tr {
+    border-bottom: 1px solid rgba(211, 211, 211, 0.507);
+}
+
+th {
+    font-size: 14px;
+    padding: 5px 0px;
+}
+
+td {
+    font-size: 12px;
+    padding: 10px 0px;
+}
+
+.fa-pen {
+    color: #13A7E7;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.fa-trash {
+    color: #fa0202;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.edit-name {
+    display: flex;
+    align-items: center;
+}
+
+.edit-name p {
+    margin: 15px 30px;
+}
+
+.edit-save {
+    display: inline-block;
+    margin: 15px 30px;
+    width: 15%;
+    height: 30px;
+    border: none;
+    background: #04A6FB;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: Poppins;
+}
+
+
+/* Upload widget */
+#add {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #13A7E7;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
