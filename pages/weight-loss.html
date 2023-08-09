@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile | EmbraceHer</title>
     <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/modal.css">
+    <link rel="stylesheet" href="../styles/authentication.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link rel="shortcut icon" href="../assets/embrace.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montez&family=Poppins&family=Tilt+Prism&display=swap" rel="stylesheet">
@@ -33,57 +35,112 @@
             <li><i class="fas fa-thumbs-up"></i><a href="./recommendation.html">Recommendation</a></li>
             <li id="index"><i class="fas fa-dumbbell"></i><a href="./weight-loss.html">Weight Loss</a></li>
         </ul>
+        <button type="button" id="admin-btn">Add an admin</button>
     </aside>
     <section class="main">
         <div class="course-head">
             <h2>Weight Loss</h2>
+            <div class="filter-options">
+                <input type="search" name="" id="search" placeholder="search...">
+            </div>
+        </div>
+        <div id="modal">
+            <div id="modal-content">
+                <span id="close-button" style="display: none;">×</span>
+                <form action="">
+                    <h1>ADD ADMIN <br><span>Fill in the admin details.</span></h1>
+                    <section class="inputBox">
+                        <input type="email" name="" id="" required>
+                        <span>Email address</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="tel" name="" id="" required>
+                        <span>Phone number</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="number" name="" id="" required>
+                        <span>Admin level</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="password" name="" id="" required>
+                        <span>Password</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="password" name="" id="" required>
+                        <span>Confirm Password</span>
+                    </section>
+                    <div>
+                        <button type="submit" id="signup">SIGNUP</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <main>
-            <!-- <table>
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close-button">×</span>
+                    <label for="">Title</label><br>
+                    <input type="text" name="" id="table-title-reco" required><br><br>
+                    <label for="">Category</label><br>
+                    <select name="" id="table-cat-reco" required>
+                        <option value="Exercise">Exercise</option>
+                        <option value="Diet">Diet</option>
+                    </select><br><br>
+                    <label for="">Description</label><br>
+                    <textarea name="" id="table-desc-reco" cols="70" rows="3" required></textarea><br><br>
+                    <label for="">ImageUrl</label><br>
+                    <input type="text" name="" id="table-image-src" required><br><br>
+                    <button>Save</button>
+                </div>
+            </div>
+            <table>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Token</th>
-                    <th>Join Date</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Category</th>
+                    <th>Description</th>
                     <th>Action</th>
                 </tr>
                 <tr>
-                    <td>Chukwunenye Moses</td>
-                    <td>chunkums088@gmail.com</td>
-                    <td>6867687</td>
-                    <td>24-07-23</td>
+                    <td>For Recovery</td>
+                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
+                    <td>Exercise</td>
+                    <td>Go jogging</td>
                     <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
                 </tr>
                 <tr>
-                    <td>Chukwunenye Moses</td>
-                    <td>chunkums088@gmail.com</td>
-                    <td>6867687</td>
-                    <td>24-07-23</td>
+                    <td>For Recovery</td>
+                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
+                    <td>Diet</td>
+                    <td>Eat watermelon or pawpaw <br> after each meal</td>
                     <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
                 </tr>
                 <tr>
-                    <td>Chukwunenye Moses</td>
-                    <td>chunkums088@gmail.com</td>
-                    <td>6867687</td>
-                    <td>24-07-23</td>
+                    <td>For Recovery</td>
+                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
+                    <td>Exercise</td>
+                    <td>Do 30 push-ups</td>
                     <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
                 </tr>
                 <tr>
-                    <td>Chukwunenye Moses</td>
-                    <td>chunkums088@gmail.com</td>
-                    <td>6867687</td>
-                    <td>24-07-23</td>
+                    <td>For Recovery</td>
+                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
+                    <td>Diet</td>
+                    <td>Take an orange juice</td>
                     <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
                 </tr>
                 <tr>
-                    <td>Chukwunenye Moses</td>
-                    <td>chunkums088@gmail.com</td>
-                    <td>6867687</td>
-                    <td>24-07-23</td>
+                    <td>For Recovery</td>
+                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
+                    <td>Exercise</td>
+                    <td>Take a walk in the evening</td>
                     <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
                 </tr>
-            </table> -->
+            </table>
         </main>
     </section>
+
+    <script src="../scripts/upload.js"></script>
+    <script src="../scripts/modal.js"></script>
 </body>
 </html>

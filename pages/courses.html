@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses | EmbraceHer</title>
     <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/modal.css">
+    <link rel="stylesheet" href="../styles/authentication.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link rel="shortcut icon" href="../assets/embrace.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montez&family=Poppins&family=Tilt+Prism&display=swap" rel="stylesheet">
@@ -33,20 +35,81 @@
             <li><i class="fas fa-thumbs-up"></i><a href="./recommendation.html">Recommendation</a></li>
             <li><i class="fas fa-dumbbell"></i><a href="./weight-loss.html">Weight Loss</a></li>
         </ul>
+        <button type="button" id="admin-btn">Add an admin</button>
     </aside>
     <section class="main">
         <div class="course-head">
             <h2>Courses</h2>
             <div class="filter-options">
                 <button id="all">All</button>
-                <button>Beginner</button>
-                <button>Intermediate</button>
-                <button>Expert</button>
-                <input type="search" name="" id="search" placeholder="search...">
+                <button id="beginner">Beginner</button>
+                <button id="intermediate">Intermediate</button>
+                <button id="expert">Expert</button>
+                <input type="search" name="" id="search" placeholder="search title...">
+            </div>
+        </div>
+        <div id="modal">
+            <div id="modal-content">
+                <span id="close-button" style="display: none;">×</span>
+                <form action="">
+                    <h1>ADD ADMIN <br><span>Fill in the admin details.</span></h1>
+                    <section class="inputBox">
+                        <input type="email" name="" id="" required>
+                        <span>Email address</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="tel" name="" id="" required>
+                        <span>Phone number</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="number" name="" id="" required>
+                        <span>Admin level</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="password" name="" id="" required>
+                        <span>Password</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="password" name="" id="" required>
+                        <span>Confirm Password</span>
+                    </section>
+                    <div>
+                        <button type="submit" id="signup">SIGNUP</button>
+                    </div>
+                </form>
             </div>
         </div>
         <main>
-            <table>
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close-button">×</span>
+                    <label for="table-title">Title</label><br>
+                    <input type="text" id="table-title" required><br><br>
+                    <label for="table-category">Category</label><br>
+                    <select id="table-category" required>
+                        <option value="">Select category:</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Expert">Expert</option>
+                    </select><br><br>
+                    <label for="table-subcategory">SubCategory</label><br>
+                    <select id="table-subcategory" required>
+                        <option value="">Select sub-category:</option>
+                        <option value="Ab">Ab</option>
+                        <option value="Butt">Butt</option>
+                        <option value="Leg">Leg</option>
+                        <option value="Full">Full</option>
+                        <option value="Arm">Arm</option>
+                        <option value="Cardio">Cardio</option>
+                    </select><br><br>
+                    <label for="table-description">Description</label><br>
+                    <textarea id="table-description" cols="70" rows="3" required></textarea><br><br>
+                    <label for="table-image-src">ImageUrl</label><br>
+                    <input type="text" id="table-image-src" required><br><br>
+                    <button>Save</button>
+                </div>
+            </div>
+            <table id="course-table">
                 <tr>
                     <th>Image</th>
                     <th>Title</th>
@@ -57,7 +120,7 @@
                 </tr>
                 <tr>
                     <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Forward at the hips</td>
+                    <td>Forward at hips</td>
                     <td>Beginner</td>
                     <td>Full</td>
                     <td>Stand with your full hip-width apart</td>
@@ -65,9 +128,17 @@
                 </tr>
                 <tr>
                     <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Forward at the hips</td>
-                    <td>Beginner</td>
-                    <td>Full</td>
+                    <td>For hips</td>
+                    <td>Intermediate</td>
+                    <td>Ab</td>
+                    <td>Stand with your full hip-width apart</td>
+                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
+                </tr>
+                <tr>
+                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
+                    <td>Forward</td>
+                    <td>Expert</td>
+                    <td>Cardio</td>
                     <td>Stand with your full hip-width apart</td>
                     <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
                 </tr>
@@ -75,37 +146,29 @@
                     <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
                     <td>Forward at the hips</td>
                     <td>Beginner</td>
-                    <td>Full</td>
+                    <td>Butt</td>
                     <td>Stand with your full hip-width apart</td>
                     <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
                 </tr>
                 <tr>
                     <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Forward at the hips</td>
-                    <td>Beginner</td>
-                    <td>Full</td>
+                    <td>Forward the hips</td>
+                    <td>Intermediate</td>
+                    <td>Leg</td>
                     <td>Stand with your full hip-width apart</td>
                     <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
                 </tr>
                 <tr>
                     <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Forward at the hips</td>
-                    <td>Beginner</td>
-                    <td>Full</td>
+                    <td>hips</td>
+                    <td>Expert</td>
+                    <td>Arm</td>
                     <td>Stand with your full hip-width apart</td>
                     <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
                 </tr>
                 <tr>
                     <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Forward at the hips</td>
-                    <td>Beginner</td>
-                    <td>Full</td>
-                    <td>Stand with your full hip-width apart</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
-                <tr>
-                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Forward at the hips</td>
+                    <td>Forward hips</td>
                     <td>Beginner</td>
                     <td>Full</td>
                     <td>Stand with your full hip-width apart</td>
@@ -122,6 +185,8 @@
     <span id="add" title="Upload document">+</span>
     
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script> 
+    <script src="../scripts/filter.js"></script>
     <script src="../scripts/upload.js"></script>
+    <script src="../scripts/modal.js"></script>
 </body>
 </html>

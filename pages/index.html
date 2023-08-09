@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | EmbraceHer</title>
     <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/modal.css">
+    <link rel="stylesheet" href="../styles/authentication.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link rel="shortcut icon" href="../assets/embrace.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montez&family=Poppins&family=Tilt+Prism&display=swap" rel="stylesheet">
@@ -34,10 +36,42 @@
             <li><i class="fas fa-thumbs-up"></i><a href="./recommendation.html">Recommendation</a></li>
             <li><i class="fas fa-dumbbell"></i><a href="./weight-loss.html">Weight Loss</a></li>
         </ul>
+        <button type="button" id="admin-btn">Add an admin</button>
     </aside>
     <section class="main">
         <div class="course-head">
             <h2>Dashboard</h2>
+        </div>
+        <div class="modal" id="modal">
+            <div class="modal-content" id="modal-content">
+                <span class="close-button" id="close">×</span>
+                <form action="">
+                    <h1>ADD ADMIN <br><span>Fill in the admin details.</span></h1>
+                    <section class="inputBox">
+                        <input type="email" name="" id="" required>
+                        <span>Email address</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="tel" name="" id="" required>
+                        <span>Phone number</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="number" name="" id="" required>
+                        <span>Admin level</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="password" name="" id="" required>
+                        <span>Password</span>
+                    </section>
+                    <section class="inputBox">
+                        <input type="password" name="" id="" required>
+                        <span>Confirm Password</span>
+                    </section>
+                    <div>
+                        <button type="submit" id="signup">SIGNUP</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <main class="main-main">
             <div class="first-user">
@@ -61,5 +95,6 @@
 
 
     <script src="../scripts/stats.js"></script>
+    <script src="../scripts/modal.js"></script>
 </body>
 </html>

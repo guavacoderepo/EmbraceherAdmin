@@ -1,0 +1,125 @@
+/* General styling for the body */
+*{
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Poppins;
+    position: relative;
+    color: #2F2E41;
+}
+
+.login-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin: auto;
+}
+
+#login-pic {
+    width: 55%;
+    height: 500px;
+}
+
+form {
+    width: 80%;
+    margin: auto;
+}
+
+form span {
+    font-size: 14px;
+    color: #919090;
+}
+
+form div {
+    margin-top: 20px;
+    position: relative;
+}
+
+form div input {
+    height: 50px;
+    width: 90%;
+    padding-left: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #2F2E41;
+}
+
+form section input {
+    height: 30px;
+    width: 70%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #2F2E41;
+}
+
+.inputBox {
+    position: relative;
+    margin-top: 30px;
+}
+
+.inputBox span {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding-bottom: 14px;
+    padding-left: 2px;
+    transition: 500ms;
+}
+
+.inputBox input:valid ~ span, .inputBox input:focus ~ span {
+    color: #13A7E7;
+    transform: translateX(0px) translateY(-15px);
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+}
+
+form div input:focus {
+    outline: 1px solid #13A7E7;
+    border: 1px solid #13A7E7;
+}
+
+#login {
+    background: #13A7E7;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-family: Poppins;
+    font-size: 14px;
+    width: 40%;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+#signup {
+    background: #13A7E7;
+    color: white;
+    border: none;
+    padding: 8px;
+    font-family: Poppins;
+    font-size: 12px;
+    width: 20%;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#ad-user, #lock {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+
+::placeholder {
+    font-size: 14px;
+    color: #2F2E41;
+}
