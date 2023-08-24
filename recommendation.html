@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | EmbraceHer</title>
+    <title>Recommendation | EmbraceHer</title>
     <link rel="stylesheet" href="../styles/styles.css">
     <link rel="stylesheet" href="../styles/modal.css">
     <link rel="stylesheet" href="../styles/authentication.css">
@@ -13,7 +13,7 @@
 </head>
 <body>
     <nav>
-        <h3><a href="./index.html">EmbraceHer</a></h3>
+        <h3><a href="./dashboard.html">EmbraceHer</a></h3>
         <div class="admin">
             <div id="adminIcon">
                 <a href="./profile.html">
@@ -21,25 +21,25 @@
                 </a>
             </div>
             <div class="admin-title">
-                <h3>Mr. Alex Admin</h3>
-                <p>Admin Manager</p>
+                <h3 id="ad-name">Loading...</h3>
+                <p id="ad-email">loading...</p>
             </div>
         </div>
     </nav>
     <aside>
         <ul>
-            <li><i class="fas fa-tachometer-alt"></i><a href="./index.html">Dashboard</a></li>
+            <li><i class="fas fa-tachometer-alt"></i><a href="./dashboard.html">Dashboard</a></li>
             <li><i class="fas fa-user"></i><a href="./users.html">Users</a></li>
             <li><i class="fas fa-cart-plus"></i><a href="./courses.html">Courses</a></li>
             <li><i class="fas fa-notes-medical"></i><a href="./health-tips.html">Health Tips</a></li>
-            <li><i class="fas fa-thumbs-up"></i><a href="./recommendation.html">Recommendation</a></li>
-            <li id="index"><i class="fas fa-dumbbell"></i><a href="./weight-loss.html">Weight Loss</a></li>
+            <li id="index"><i class="fas fa-thumbs-up"></i><a href="./recommendation.html">Recommendation</a></li>
+            <li><i class="fas fa-dumbbell"></i><a href="./weight-loss.html">Weight Loss</a></li>
         </ul>
         <button type="button" id="admin-btn">Add an admin</button>
     </aside>
     <section class="main">
         <div class="course-head">
-            <h2>Weight Loss</h2>
+            <h2>Recommendation</h2>
             <div class="filter-options">
                 <input type="search" name="" id="search" placeholder="search...">
             </div>
@@ -50,24 +50,16 @@
                 <form action="">
                     <h1>ADD ADMIN <br><span>Fill in the admin details.</span></h1>
                     <section class="inputBox">
-                        <input type="email" name="" id="" required>
+                        <input type="email" name="" id="admin-email" required>
                         <span>Email address</span>
                     </section>
                     <section class="inputBox">
-                        <input type="tel" name="" id="" required>
-                        <span>Phone number</span>
-                    </section>
-                    <section class="inputBox">
-                        <input type="number" name="" id="" required>
+                        <input type="number" name="" id="admin-level" required>
                         <span>Admin level</span>
                     </section>
                     <section class="inputBox">
-                        <input type="password" name="" id="" required>
+                        <input type="password" name="" id="admin-pwd" required>
                         <span>Password</span>
-                    </section>
-                    <section class="inputBox">
-                        <input type="password" name="" id="" required>
-                        <span>Confirm Password</span>
                     </section>
                     <div>
                         <button type="submit" id="signup">SIGNUP</button>
@@ -89,7 +81,7 @@
                     <label for="">Description</label><br>
                     <textarea name="" id="table-desc-reco" cols="70" rows="3" required></textarea><br><br>
                     <label for="">ImageUrl</label><br>
-                    <input type="text" name="" id="table-image-src" required><br><br>
+                    <input type="text" name="" id="table-image-src" required><br><br><br>
                     <button>Save</button>
                 </div>
             </div>
@@ -140,7 +132,47 @@
         </main>
     </section>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        // Get the token from localStorage
+        const token = localStorage.getItem('token');
+
+        console.log("Token from localStorage:", token);
+
+        if (token) {
+            const apiUrl = "https://embraceher.onrender.com";
+            const endpoint = "/api/v1/admin/me";
+            const url = apiUrl + endpoint;
+
+            fetch(url, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(user => {
+                console.log("User Data:", user);
+                const adName = document.getElementById('ad-name');
+                const adEmail = document.getElementById('ad-email');
+
+                adName.innerHTML = 'Admin Level' + ' ' + user.data.level;
+                adEmail.innerHTML = user.data.email;
+                adEmail.style.fontSize = '12px';
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    });
+    </script>
     <script src="../scripts/upload.js"></script>
     <script src="../scripts/modal.js"></script>
+
 </body>
 </html>

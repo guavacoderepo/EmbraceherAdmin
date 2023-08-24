@@ -14,7 +14,7 @@
 </head>
 <body>
     <nav>
-        <h3><a href="./index.html">EmbraceHer</a></h3>
+        <h3><a href="./dashboard.html">EmbraceHer</a></h3>
         <div class="admin">
             <div id="adminIcon">
                 <a href="./profile.html">
@@ -22,14 +22,14 @@
                 </a>
             </div>
             <div class="admin-title">
-                <h3>Mr. Alex Admin</h3>
-                <p>Admin Manager</p>
+                <h3 id="ad-name">Loading...</h3>
+                <p id="ad-email">loading...</p>
             </div>
         </div>
     </nav>
     <aside>
         <ul>
-            <li id="index"><i class="fas fa-tachometer-alt"></i><a href="./index.html">Dashboard</a></li>
+            <li id="index"><i class="fas fa-tachometer-alt"></i><a href="./dashboard.html">Dashboard</a></li>
             <li><i class="fas fa-user"></i><a href="./users.html">Users</a></li>
             <li><i class="fas fa-cart-plus"></i><a href="./courses.html">Courses</a></li>
             <li><i class="fas fa-notes-medical"></i><a href="./health-tips.html">Health Tips</a></li>
@@ -48,24 +48,16 @@
                 <form action="">
                     <h1>ADD ADMIN <br><span>Fill in the admin details.</span></h1>
                     <section class="inputBox">
-                        <input type="email" name="" id="" required>
+                        <input type="email" name="" id="admin-email" required>
                         <span>Email address</span>
                     </section>
                     <section class="inputBox">
-                        <input type="tel" name="" id="" required>
-                        <span>Phone number</span>
-                    </section>
-                    <section class="inputBox">
-                        <input type="number" name="" id="" required>
+                        <input type="number" name="" id="admin-level" required>
                         <span>Admin level</span>
                     </section>
                     <section class="inputBox">
-                        <input type="password" name="" id="" required>
+                        <input type="password" name="" id="admin-pwd" required>
                         <span>Password</span>
-                    </section>
-                    <section class="inputBox">
-                        <input type="password" name="" id="" required>
-                        <span>Confirm Password</span>
                     </section>
                     <div>
                         <button type="submit" id="signup">SIGNUP</button>
@@ -96,5 +88,6 @@
 
     <script src="../scripts/stats.js"></script>
     <script src="../scripts/modal.js"></script>
+    <script src="../scripts/user.js"></script>
 </body>
 </html>

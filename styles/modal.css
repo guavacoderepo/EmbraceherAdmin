@@ -16,6 +16,7 @@
     margin: 13% auto;
     padding: 30px;
     border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
     width: 80%;
     height: 59%;
     max-width: 600px;
@@ -24,10 +25,12 @@
 
 #modal-content {
     background-color: #fefefe;
-    margin: 9% auto;
-    height: 71%;
+    margin: 12% auto;
+    height: 55%;
+    width: 50%;
     padding: 15px;
     border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
     max-width: 600px;
     font-size: 12px;
 }
@@ -49,4 +52,13 @@ option {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+}
+
+
+.no-results-message {
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-top: 20px;
+    text-align: center;
 }
