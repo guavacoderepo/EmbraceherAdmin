@@ -22,10 +22,16 @@ handleInputFocusBlur(adLock, lockIcon);
 
 const loginForm = document.getElementById('login-form');
 
+const loginButton = document.getElementById('login');
+const loginButtonText = loginButton.textContent;
 
 loginForm.addEventListener('submit', (event) => {
     // Prevent form submission
     event.preventDefault();
+
+    // Disable the button and change text to "Logging in..."
+    loginButton.disabled = true;
+    loginButton.textContent = 'Logging in...';
 
     // Get the values of the input fields
     let email = document.getElementById('ad-input').value;
@@ -66,15 +72,21 @@ loginForm.addEventListener('submit', (event) => {
         // Clear email and password fields
         document.getElementById('ad-input').value = '';
         document.getElementById('ad-lock').value = '';
+
+        // Restore the button state after login
+        loginButton.disabled = false;
+        loginButton.textContent = loginButtonText;
         
         // Get the user's token
         const token = user.token;
 
         // Redirect to another page and pass the token as a query parameter
         window.location.href = `dashboard.html?token=${token}`;
-
     })
     .catch(error => {
         console.error("Error:", error);
+        // Restore the button state after error
+        loginButton.disabled = false;
+        loginButton.textContent = loginButtonText;
     });
 })

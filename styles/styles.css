@@ -106,7 +106,18 @@ aside ul li a:hover {
     width: 80%;
     position: absolute;
     right: 0rem;
-    top: 6.7rem;
+    top: 5.3rem;
+    padding-left: 10px;
+}
+
+#mainnest {
+    border-left: 1px solid #13a7e7;
+}
+
+#loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
 }
 
 .course-head {
@@ -221,8 +232,12 @@ aside ul li a:hover {
 table {
     border-collapse: collapse;
     text-align: left;
-    width: 90%;
+    width: 100%;
     margin: auto;
+}
+
+#user-table {
+    margin-bottom: 20px;
 }
 
 tr {

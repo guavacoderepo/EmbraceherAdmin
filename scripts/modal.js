@@ -48,57 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-// USERS
-document.addEventListener("DOMContentLoaded", function () {
-    const penIcons = document.querySelectorAll(".fas.fa-pen");
-    const modal = document.querySelector(".modal");
-    const closeButton = document.querySelector(".close-button");
-    const titleInputFull = document.getElementById("table-title-fullname");
-    const categoryInputUser = document.getElementById("table-title-username");
-    const subcategoryInputEmail = document.getElementById("table-title-email");
-    const descriptionInputPhone = document.getElementById("table-title-phone");
-    const inputToken = document.getElementById("table-title-token");
-
-    function openModal(event) {
-        modal.style.display = "block";
-
-        const tableRow = event.target.closest("tr");
-        const tds = tableRow.querySelectorAll("td");
-
-
-        const fullname = tds[0].textContent;
-        const username = '';
-        const email = tds[1].textContent;
-        const phone = '';
-        const token = tds[2].textContent;
-
-
-        titleInputFull.value = fullname;
-        categoryInputUser.value = username;
-        subcategoryInputEmail.value = email;
-        descriptionInputPhone.value = phone;
-        inputToken.value = token;
-    }
-
-    function closeModal() {
-        modal.style.display = "none";
-    }
-
-    penIcons.forEach((icon) => {
-        icon.addEventListener("click", openModal);
-    });
-
-    closeButton.addEventListener("click", closeModal);
-
-    window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
-});
-
-
 // HEALTH-TIPS
 document.addEventListener("DOMContentLoaded", function () {
     const penIcons = document.querySelectorAll(".fas.fa-pen");

@@ -21,8 +21,8 @@
                 </a>
             </div>
             <div class="admin-title">
-                <h3 id="ad-name">Loading...</h3>
-                <p id="ad-email">loading...</p>
+                <p id="ad-name">Loading level...</p>
+                <p id="ad-email">loading email...</p>
             </div>
         </div>
     </nav>
@@ -37,7 +37,7 @@
         </ul>
         <button type="button" id="admin-btn">Add an admin</button>
     </aside>
-    <section class="main">
+    <section class="main" id="mainnest">
         <div class="course-head">
             <h2>Users</h2>
             <div class="filter-options">
@@ -70,21 +70,23 @@
         <main>
             <div class="modal">
                 <div class="modal-content">
-                    <span class="close-button">×</span>
-                    <label for="">Full Name</label><br>
-                    <input type="text" name="" id="table-title-fullname" required><br><br>
-                    <label for="">Username</label><br>
-                    <input type="text" name="" id="table-title-username" required><br><br>
-                    <label for="">Email Address</label><br>
-                    <input type="email" name="" id="table-title-email" required><br><br>
-                    <label for="">Phone Number</label><br>
-                    <input type="tel" name="" id="table-title-phone" required><br><br>
-                    <label for="">Token</label><br>
-                    <input type="text" name="" id="table-title-token" required><br><br>
-                    <button>Save</button>
+                    <div>
+                        <span class="close-button">×</span>
+                        <label for="">Full Name</label><br>
+                        <input type="text" name="" id="table-title-fullname" required><br><br>
+                        <label for="">Username</label><br>
+                        <input type="text" name="" id="table-title-username" required><br><br>
+                        <label for="">Email Address</label><br>
+                        <input type="email" name="" id="table-title-email" required><br><br>
+                        <label for="">Phone Number</label><br>
+                        <input type="tel" name="" id="table-title-phone" required><br><br>
+                        <label for="">Token</label><br>
+                        <input type="text" name="" id="table-title-token" required><br><br>
+                        <button>Save</button>
+                    </div>
                 </div>
             </div>
-            <table>
+            <table id="user-table">
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
@@ -92,41 +94,7 @@
                     <th>Join Date</th>
                     <th>Action</th>
                 </tr>
-                <tr>
-                    <td>Chike Nneoma</td>
-                    <td>chunkums088@gmail.com</td>
-                    <td>6867687</td>
-                    <td>24-07-23</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
-                <tr>
-                    <td>Muobike Stanley</td>
-                    <td>chunkums088@gmail.com</td>
-                    <td>6867687</td>
-                    <td>24-07-23</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
-                <tr>
-                    <td>Celestine Amblessed</td>
-                    <td>chunkums088@gmail.com</td>
-                    <td>6867687</td>
-                    <td>24-07-23</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
-                <tr>
-                    <td>Nwogo Everistus</td>
-                    <td>chunkums088@gmail.com</td>
-                    <td>6867687</td>
-                    <td>24-07-23</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
-                <tr>
-                    <td>Chukwunenye Moses</td>
-                    <td>chunkums088@gmail.com</td>
-                    <td>6867687</td>
-                    <td>24-07-23</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
+                <div id="loading" style="display: none;">Loading...</div>
             </table>
         </main>
     </section>
@@ -161,7 +129,7 @@
                 const adName = document.getElementById('ad-name');
                 const adEmail = document.getElementById('ad-email');
 
-                adName.innerHTML = 'Admin Level' + ' ' + user.data.level;
+                adName.innerHTML = 'Admin' + ' ' + '<b>' + 'Level' + ' ' + user.data.level + '</b>';
                 adEmail.innerHTML = user.data.email;
                 adEmail.style.fontSize = '12px';
             })
@@ -170,6 +138,118 @@
             });
         }
     });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        // Get the token from localStorage
+        const token = localStorage.getItem('token');
+
+        console.log("Token from localStorage:", token);
+
+        if (token) {
+            const apiUrl = "https://embraceher.onrender.com";
+            const endpoint = "/api/v1/user";
+            const url = apiUrl + endpoint;
+
+            // Show loading component while fetching
+            const loadingComponent = document.getElementById('loading');
+            loadingComponent.style.display = 'block';
+            document.getElementById('mainnest').style.borderLeft = 'none'
+
+            fetch(url, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(alluser => {
+                console.log("All Users:", alluser);
+                const table = document.getElementById('user-table');
+
+                // Hide loading component after fetching
+                loadingComponent.style.display = 'none';
+                document.getElementById('mainnest').style.borderLeft = '1px solid #13a7e7'
+
+
+                alluser.data.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.fullName}</td>
+                        <td>${user.email}</td>
+                        <td>${user.token}</td>
+                        <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+                        <td>
+                            <i class="fas fa-pen" title="Edit"></i>
+                            <i class="fas fa-trash" title="Delete"></i>
+                        </td>
+                    `;
+                    table.appendChild(row);
+
+                    // Select the modal and its input fields
+                    const modal = document.querySelector(".modal");
+                    const titleInputFull = document.getElementById("table-title-fullname");
+                    const categoryInputUser = document.getElementById("table-title-username");
+                    const subcategoryInputEmail = document.getElementById("table-title-email");
+                    const descriptionInputPhone = document.getElementById("table-title-phone");
+                    const inputToken = document.getElementById("table-title-token");
+                    
+                    // Function to open the modal and populate the fields
+                    function openModal(event) {
+                        modal.style.display = "block";
+
+                        const tableRow = event.target.closest("tr");
+                        const tds = tableRow.querySelectorAll("td");
+
+                        const fullname = tds[0].textContent;
+                        const username = user.username;
+                        const email = tds[1].textContent;
+                        const phone = user.phoneNumber;
+                        const token = tds[2].textContent;
+
+                        // Find the matching user for the clicked row
+                        const clickedUser = alluser.data.find(u => u.fullName === fullname && u.email === email && u.token === token);
+
+                        if (clickedUser) {
+                            titleInputFull.value = clickedUser.fullName;
+                            categoryInputUser.value = clickedUser.username;
+                            subcategoryInputEmail.value = clickedUser.email;
+                            descriptionInputPhone.value = clickedUser.phoneNumber;
+                            inputToken.value = clickedUser.token;
+                        }
+                    }
+
+                    // Add event listeners to the pen icons for opening the modal
+                    const penIcons = document.querySelectorAll(".fas.fa-pen");
+                    penIcons.forEach((icon) => {
+                        icon.addEventListener("click", openModal);
+                    });
+
+                    // Get all trash icons with the specific class
+                    const trashIcons = document.querySelectorAll(".fas.fa-trash");
+
+                    trashIcons.forEach((icon) => {
+                        icon.addEventListener("click", deleteRow);
+                    });
+
+                    // Function to delete the row
+                    function deleteRow(event) {
+                        const tableRow = event.target.closest("tr");
+                        tableRow.remove();
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    });  
     </script>
 
     <script src="../scripts/upload.js"></script>

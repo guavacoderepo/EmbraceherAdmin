@@ -23,6 +23,10 @@
     font-size: 12px;
 }
 
+.modal-content input {
+    width: 50%;
+}
+
 #modal-content {
     background-color: #fefefe;
     margin: 12% auto;

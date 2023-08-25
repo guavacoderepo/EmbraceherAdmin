@@ -33,12 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
             // Store the token in localStorage
             localStorage.setItem('token', user.token);
 
-            adName.innerHTML = 'Admin Level' + ' ' + user.data.level;
+            adName.innerHTML = 'Admin' + ' ' + '<b>' + 'Level' + ' ' + user.data.level + '</b>';
             adEmail.innerHTML = user.data.email;
             adEmail.style.fontSize = '12px';
         })
         .catch(error => {
             console.error("Error:", error);
         });
+    } else {
+        // If no token is present, route back to the login page
+        window.location.href = '/index.html';
     }
 });
