@@ -132,12 +132,14 @@
         </main>
     </section>
 
+    <span id="add" title="Upload document">+</span>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
         // Get the token from localStorage
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
 
-        console.log("Token from localStorage:", token);
+        console.log("Token from sessionStorage:", token);
 
         if (token) {
             const apiUrl = "https://embraceher.onrender.com";

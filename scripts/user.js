@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Token from URL:", token);
 
     // Get the token from localStorage
-    const getToken = localStorage.getItem('token');
+    const getToken = sessionStorage.getItem('token');
 
     if (token || getToken) {
         const apiUrl = "https://embraceher.onrender.com";
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(url, {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${getToken || token}`
+                "Authorization": `Bearer ${token || getToken}`
             }
         })
         .then(response => {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const adEmail = document.getElementById('ad-email');
 
             // Store the token in localStorage
-            localStorage.setItem('token', user.token);
+            sessionStorage.setItem('token', user.token);
 
             adName.innerHTML = 'Admin' + ' ' + '<b>' + 'Level' + ' ' + user.data.level + '</b>';
             adEmail.innerHTML = user.data.email;
