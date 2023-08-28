@@ -37,7 +37,7 @@
         </ul>
         <button type="button" id="admin-btn">Add an admin</button>
     </aside>
-    <section class="main">
+    <section class="main" id="mainnest">
         <div class="course-head">
             <h2>Recommendation</h2>
             <div class="filter-options">
@@ -75,8 +75,8 @@
                     <input type="text" name="" id="table-title-reco" required><br><br>
                     <label for="">Category</label><br>
                     <select name="" id="table-cat-reco" required>
-                        <option value="Exercise">Exercise</option>
-                        <option value="Diet">Diet</option>
+                        <option value="exercise">Exercise</option>
+                        <option value="diet">Diet</option>
                     </select><br><br>
                     <label for="">Description</label><br>
                     <textarea name="" id="table-desc-reco" cols="70" rows="3" required></textarea><br><br>
@@ -85,7 +85,7 @@
                     <button>Save</button>
                 </div>
             </div>
-            <table>
+            <table id="user-table" class="re-commend">
                 <tr>
                     <th>Title</th>
                     <th>Image</th>
@@ -93,41 +93,7 @@
                     <th>Description</th>
                     <th>Action</th>
                 </tr>
-                <tr>
-                    <td>For Recovery</td>
-                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Exercise</td>
-                    <td>Go jogging</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
-                <tr>
-                    <td>For Recovery</td>
-                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Diet</td>
-                    <td>Eat watermelon or pawpaw <br> after each meal</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
-                <tr>
-                    <td>For Recovery</td>
-                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Exercise</td>
-                    <td>Do 30 push-ups</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
-                <tr>
-                    <td>For Recovery</td>
-                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Diet</td>
-                    <td>Take an orange juice</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
-                <tr>
-                    <td>For Recovery</td>
-                    <td><img src="../assets/embrace.png" alt="course image" id="course-image"></td>
-                    <td>Exercise</td>
-                    <td>Take a walk in the evening</td>
-                    <td><i class="fas fa-pen" title="Edit"></i><i class="fas fa-regular fa-trash" title="Delete"></i></td>
-                </tr>
+                <div id="loading" style="display: none;">Loading...</div
             </table>
         </main>
     </section>
@@ -172,6 +138,113 @@
             });
         }
     });
+    </script>
+
+    <!-- Fetch recommendations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        // Get the token from localStorage
+        const token = sessionStorage.getItem('token');
+
+        console.log("Token from sessionStorage:", token);
+
+        if (token) {
+            const apiUrl = "https://embraceher.onrender.com";
+            const endpoint = "/api/v1/recommendation";
+            const url = apiUrl + endpoint;
+
+            // Show loading component while fetching
+            const loadingComponent = document.getElementById('loading');
+            loadingComponent.style.display = 'block';
+            document.getElementById('mainnest').style.borderLeft = 'none'
+
+            fetch(url, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(allreco => {
+                console.log("All Users:", allreco);
+                const table = document.getElementById('user-table');
+
+                // Hide loading component after fetching
+                loadingComponent.style.display = 'none';
+                document.getElementById('mainnest').style.borderLeft = '1px solid #13a7e7'
+
+
+                allreco.data.forEach(reco => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${reco.title}</td>
+                        <td>${reco.imgUrl}</td>
+                        <td>${reco.category}</td>
+                        <td>${reco.description}</td>
+                        <td>
+                            <i class="fas fa-pen" title="Edit"></i>
+                            <i class="fas fa-trash" title="Delete"></i>
+                        </td>
+                    `;
+                    table.appendChild(row);
+
+                    // Select the modal and its input fields
+                    const modal = document.querySelector(".modal");
+                    
+                    // Function to open the modal and populate the fields
+                    function openModal(event) {
+                        modal.style.display = "block";
+                        const modalContent = document.querySelector(".modal-content");
+
+                        const tableRow = event.target.closest("tr");
+                        const tds = tableRow.querySelectorAll("td");
+
+                        const title = tds[0].textContent;
+
+                        // Find the matching user for the clicked row
+                        const clickedReco = allreco.data.find(u => u.title === title);
+
+                        if (clickedReco) {
+                            modalContent.querySelector("#table-title-reco").value = clickedReco.title;
+                            modalContent.querySelector("#table-cat-reco").value = clickedReco.category;
+                            modalContent.querySelector("#table-desc-reco").value = clickedReco.description;
+                            modalContent.querySelector("#table-image-src").value = clickedReco.imgUrl;
+                        }
+                        console.log(clickedReco.category);
+                    }
+
+                    // Add event listeners to the pen icons for opening the modal
+                    const penIcons = document.querySelectorAll(".fas.fa-pen");
+                    penIcons.forEach((icon) => {
+                        icon.addEventListener("click", openModal);
+                    });
+
+                    // Get all trash icons with the specific class
+                    const trashIcons = document.querySelectorAll(".fas.fa-trash");
+
+                    trashIcons.forEach((icon) => {
+                        icon.addEventListener("click", deleteRow);
+                    });
+
+                    // Function to delete the row
+                    function deleteRow(event) {
+                        const tableRow = event.target.closest("tr");
+                        tableRow.remove();
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    });  
+    </script>
+
     </script>
     <script src="../scripts/upload.js"></script>
     <script src="../scripts/modal.js"></script>

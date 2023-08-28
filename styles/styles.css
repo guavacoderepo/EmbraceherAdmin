@@ -183,46 +183,9 @@ aside ul li a:hover {
     left: -140px;
 }
 
-/* #chart-two {
-    scale: 0.5;
-    position: absolute;
-    top: 0px;
-    left: -80px;
-}
-
-#chart-three {
-    scale: 0.5;
-    position: relative;
-    top: 50px;
-    left: -80px;
-}
-
-#chart-four {
-    scale: 0.5;
-    position: relative;
-    top: 200px;
-    left: -80px;
-} */
-
 .first-user {
     position: relative;
 }
-
-/* .second-user {
-    position: relative;
-    left: 40%;
-}
-
-.third-user {
-    position: absolute;
-    top: 300%;
-}
-
-.fourth-user {
-    position: absolute;
-    top: 300%;
-    left: 47.5%;
-} */
 
 .main-main {
     display: flex;
@@ -239,6 +202,12 @@ table {
 #user-table {
     margin-bottom: 20px;
 }
+
+/* Add padding to the description column */
+.re-commend td, .re-commend th {
+    padding: 10px;
+}
+
 
 tr {
     border-bottom: 1px solid rgba(211, 211, 211, 0.507);
