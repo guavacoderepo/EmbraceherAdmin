@@ -208,6 +208,19 @@ table {
     padding: 10px;
 }
 
+.re-commend td:nth-child(5) {
+    /* background: black; */
+    padding: 0px;
+}
+
+.course td:nth-child(5) {
+    /* background: black; */
+    padding: 10px;
+}
+
+.re-commend td:nth-child(6) {
+    padding: 0px;
+}
 
 tr {
     border-bottom: 1px solid rgba(211, 211, 211, 0.507);
@@ -228,13 +241,18 @@ td {
     color: #13A7E7;
     font-size: 14px;
     cursor: pointer;
+    margin-left: 5px;
 }
+
+/* .tr {
+    margin-left: 35px;
+} */
 
 .fa-trash {
     color: #fa0202;
     font-size: 14px;
     cursor: pointer;
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
 .edit-name {

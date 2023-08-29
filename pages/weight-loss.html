@@ -79,7 +79,7 @@
                         <option value="diet">Diet</option>
                     </select><br><br>
                     <label for="">Description</label><br>
-                    <textarea name="" id="table-desc-reco" cols="70" rows="3" required></textarea><br><br>
+                    <textarea name="" id="table-desc-reco" cols="70" rows="4" required></textarea><br><br>
                     <label for="">ImageUrl</label><br>
                     <input type="text" name="" id="table-image-src" required><br><br>
                     <button>Save</button>
@@ -217,6 +217,17 @@
                         }
                         console.log(clickedReco.category);
                     }
+
+                    // Select the close button in the modal
+                    const closeButton = document.querySelector(".close-button");
+
+                    // Function to close the modal
+                    function closeModal() {
+                        modal.style.display = "none";
+                    }
+
+                    // Add click event listener to close button
+                    closeButton.addEventListener("click", closeModal);
 
                     // Add event listeners to the pen icons for opening the modal
                     const penIcons = document.querySelectorAll(".fas.fa-pen");

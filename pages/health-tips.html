@@ -86,7 +86,7 @@
                         <option value="Average">Average</option>
                     </select><br><br>                    
                     <label for="">Description</label><br>
-                    <textarea name="" id="table-description-health" cols="70" rows="3"></textarea><br><br><br>
+                    <textarea name="" id="table-description-health" cols="70" rows="4"></textarea><br><br><br>
                     <button>Save</button>
                 </div>
             </div>
@@ -222,6 +222,17 @@
                             modalContent.querySelector("#table-description-health").value = clickedReco.description;
                         }
                     }
+
+                    // Select the close button in the modal
+                    const closeButton = document.querySelector(".close-button");
+
+                    // Function to close the modal
+                    function closeModal() {
+                        modal.style.display = "none";
+                    }
+
+                    // Add click event listener to close button
+                    closeButton.addEventListener("click", closeModal);
 
                     // Add event listeners to the pen icons for opening the modal
                     const penIcons = document.querySelectorAll(".fas.fa-pen");
