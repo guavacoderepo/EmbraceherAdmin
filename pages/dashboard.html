@@ -45,15 +45,15 @@
         <div class="modal" id="modal">
             <div class="modal-content" id="modal-content">
                 <span class="close-button" id="close">×</span>
-                <form action="">
+                <form id="admin-form">
                     <h1>ADD ADMIN <br><span>Fill in the admin details.</span></h1>
                     <section class="inputBox">
                         <input type="email" name="" id="admin-email" required>
                         <span>Email address</span>
                     </section>
                     <section class="inputBox">
-                        <input type="number" name="" id="admin-level" required>
-                        <span>Admin level</span>
+                        <input type="number" min='1' max='10' name="" id="admin-level" required>
+                        <span>Admin level <b style="color: red; font-size: 10px;">(btw 1 and 10)</b></span>
                     </section>
                     <section class="inputBox">
                         <input type="password" name="" id="admin-pwd" required>
@@ -77,5 +77,6 @@
     <script src="../scripts/stats.js"></script>
     <script src="../scripts/modal.js"></script>
     <script src="../scripts/user.js"></script>
+    <script src="../scripts/upload.js"></script>
 </body>
 </html>
