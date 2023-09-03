@@ -51,16 +51,19 @@ nav h3 a {
 /* Side navigation */
 aside {
     position: fixed;
-    top: 20%;
-    width: 20%;
-    height: 75%;
+    top: 13%;
+    width: 22%;
+    height: 87%;
     margin-left: -2%;
+    padding-right: 20px;
     font-size: 14px;
+    /* background: red; */
+    border-right: 1px solid #13a7e7;
 }
 
 #admin-btn {
     position: absolute;
-    bottom: 0px;
+    bottom: 30px;
     left: 40px;
     background: #13A7E7;
     color: white;
@@ -108,11 +111,9 @@ aside ul li a:hover {
     right: 0rem;
     top: 5.3rem;
     padding-left: 10px;
+    /* background: blue; */
 }
 
-#mainnest {
-    border-left: 1px solid #13a7e7;
-}
 
 #loading {
     position: fixed;

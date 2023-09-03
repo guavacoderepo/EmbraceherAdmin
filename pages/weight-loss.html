@@ -171,12 +171,12 @@
                 return response.json();
             })
             .then(allreco => {
-                console.log("All Users:", allreco);
+                console.log("All Weight loss:", allreco);
                 const table = document.getElementById('user-table');
 
                 // Hide loading component after fetching
                 loadingComponent.style.display = 'none';
-                document.getElementById('mainnest').style.borderLeft = '1px solid #13a7e7'
+                // document.getElementById('mainnest').style.borderLeft = '1px solid #13a7e7'
 
 
                 allreco.data.forEach(reco => {
