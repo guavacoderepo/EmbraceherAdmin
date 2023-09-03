@@ -258,13 +258,25 @@
                     const trashIcons = document.querySelectorAll(".fas.fa-trash");
 
                     trashIcons.forEach((icon) => {
-                        icon.addEventListener("click", deleteRow);
+                        if (!icon.classList.contains('delete-button-listener-added')) {
+                            icon.addEventListener("click", deleteRow);
+                            icon.classList.add('delete-button-listener-added');
+                        }
                     });
 
-                    // Function to delete the row
+
+                    // Function to delete the row with a confirmation prompt
                     function deleteRow(event) {
-                        const tableRow = event.target.closest("tr");
-                        tableRow.remove();
+                        event.preventDefault(); 
+
+                        const trashIcon = event.target;
+                        const tableRow = trashIcon.closest("tr");
+
+                        const confirmation = confirm("Are you sure you want to delete this row?");
+                        
+                        if (confirmation) {
+                            tableRow.remove();
+                        }
                     }
                 });
             })

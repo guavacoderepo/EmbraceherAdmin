@@ -26,23 +26,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // Code applied on the trash icons to delete a table row
-document.addEventListener("DOMContentLoaded", function () {
-    // Get all the trash icons
-    const trashIcons = document.querySelectorAll(".fas.fa-regular.fa-trash");
+// document.addEventListener("DOMContentLoaded", function () {
+//     // Get all the trash icons
+//     const trashIcons = document.querySelectorAll(".fas.fa-regular.fa-trash");
 
-    // Function to remove the table row when trash icon is clicked
-    function removeTableRow(event) {
-        const trashIcon = event.target;
-        const tableRow = trashIcon.closest("tr");
-        if (confirm("Are you sure you want to delete?") == true) {
-            tableRow.remove();
-        } else {
-            console.log('You cancelled');
-        }
-    }
+//     // Function to remove the table row when trash icon is clicked
+//     function removeTableRow(event) {
+//         const trashIcon = event.target;
+//         const tableRow = trashIcon.closest("tr");
+//         if (confirm("Are you sure you want to delete?") == true) {
+//             tableRow.remove();
+//         } else {
+//             console.log('You cancelled');
+//         }
+//     }
 
-    // Add click event listener to each trash icon
-    trashIcons.forEach((icon) => {
-      icon.addEventListener("click", removeTableRow);
-    });
-});
+//     // Add click event listener to each trash icon
+//     trashIcons.forEach((icon) => {
+//       icon.addEventListener("click", removeTableRow);
+//     });
+// });
