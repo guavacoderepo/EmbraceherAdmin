@@ -200,6 +200,15 @@ table {
     margin: auto;
 }
 
+#stat-table {
+    text-align: center;
+}
+
+#stat-table tr:nth-child(2) {
+    border-bottom: none;
+    font-weight: bold;
+}
+
 #user-table {
     margin-bottom: 20px;
 }

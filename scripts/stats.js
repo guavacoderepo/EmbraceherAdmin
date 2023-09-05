@@ -1,3 +1,53 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the token from the URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    console.log("Token from URL:", token);
+
+    // Get the token from localStorage
+    const getToken = sessionStorage.getItem('token');
+
+    if (token || getToken) {
+        const apiUrl = "https://embraceher.onrender.com";
+        const endpoint = "/api/v1/statistics";
+        const url = apiUrl + endpoint;
+
+        fetch(url, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token || getToken}`
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Request failed with status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(stats => {
+            console.log("Stats Data:", stats);
+            const users = document.getElementById('users');
+            const courses = document.getElementById('courses');
+            const healthtips = document.getElementById('healthtips');
+            const recommendation = document.getElementById('recommendation');
+            const weightloss = document.getElementById('weightloss');
+
+            users.innerHTML = stats.users;
+            courses.innerHTML = stats.course;
+            healthtips.innerHTML = stats.healthtips;
+            recommendation.innerHTML = stats.recommendation;
+            weightloss.innerHTML = stats.weightloss;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    } else {
+        // If no token is present, route back to the login page
+        window.location.href = '/index.html';
+    }
+});
+
 // Data for the bar chart
 const data = [
     { category: "A", value: 20 },
