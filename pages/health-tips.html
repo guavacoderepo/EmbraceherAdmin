@@ -41,7 +41,7 @@
         <div class="course-head">
             <h2>Health Tips</h2>
             <div class="filter-options">
-                <input type="search" name="" id="search" placeholder="search...">
+                <input type="search" name="" id="search" placeholder="search by title...">
             </div>
         </div>
         <div id="modal">
@@ -98,8 +98,8 @@
                     <th>Description</th>
                     <th>Action</th>
                 </tr>
-                <div id="loading" style="display: none;">Loading...</div
             </table>
+            <div id="loading" style="display: none;">Loading...</div
         </main>
     </section>
 
@@ -293,6 +293,27 @@
                             tableRow.remove();
                         }
                     }
+                });
+                // Add an event listener to the search input
+                const searchInput = document.getElementById('search');
+                searchInput.addEventListener('input', function () {
+                    console.log('Filtering rows...');
+                    const searchText = searchInput.value.toLowerCase();
+                    const rows = table.querySelectorAll('tr');
+
+                    rows.forEach(row => {
+                        const titleCell = row.querySelector('td:first-child'); // Select the first TD (Title)
+
+                        if (titleCell) { // Check if titleCell is not null
+                            const titleText = titleCell.textContent.toLowerCase();
+
+                            if (titleText.includes(searchText)) {
+                                row.style.display = ''; // Show the row if it contains the search text
+                            } else {
+                                row.style.display = 'none'; // Hide the row if it doesn't contain the search text
+                            }
+                        }
+                    });
                 });
             })
             .catch(error => {

@@ -41,7 +41,7 @@
         <div class="course-head">
             <h2>Users</h2>
             <div class="filter-options">
-                <input type="search" name="" id="search-user" placeholder="search...">
+                <input type="search" name="" id="search-user" placeholder="search by name...">
             </div>
         </div>
         <div id="modal">
@@ -96,6 +96,7 @@
                 </tr>
                 <div id="loading" style="display: none;">Loading...</div>
             </table>
+            <div id="no-match-message" style="display: none;">No users matched this search</div>
         </main>
     </section>
 
@@ -181,6 +182,8 @@
                 loadingComponent.style.display = 'none';
                 // document.getElementById('mainnest').style.borderLeft = '1px solid #13a7e7'
 
+                // Store the original rows for filtering
+                // const originalRows = [...table.querySelectorAll('tr')];
 
                 alluser.data.forEach(user => {
                     const row = document.createElement('tr');
@@ -257,7 +260,6 @@
                         }
                     });
 
-
                     // Function to delete the row with a confirmation prompt
                     function deleteRow(event) {
                         event.preventDefault(); 
@@ -299,6 +301,31 @@
                             }
                             tableRow.remove();
                         }
+                    }
+                });
+                // Add an event listener to the search input
+                const searchInput = document.getElementById('search-user');
+                searchInput.addEventListener('input', function () {
+                    const searchText = searchInput.value.toLowerCase();
+                    const rowsToFilter = [...table.querySelectorAll('tr:not(:first-child)')]; // Exclude the first row (headers)
+                    let foundMatch = false;
+
+                    rowsToFilter.forEach(row => {
+                        const tdTextContent = row('td:first-child').textContent.toLowerCase();
+                        if (tdTextContent.includes(searchText)) {
+                            row.style.display = ''; // Show the row if it contains the search text
+                            foundMatch = true;
+                        } else {
+                            row.style.display = 'none'; // Hide the row if it doesn't contain the search text
+                        }
+                    });
+
+                    // Display a message if no matches were found
+                    const noMatchMessage = document.getElementById('no-match-message');
+                    if (!foundMatch) {
+                        noMatchMessage.style.display = 'block';
+                    } else {
+                        noMatchMessage.style.display = 'none';
                     }
                 });
             })
