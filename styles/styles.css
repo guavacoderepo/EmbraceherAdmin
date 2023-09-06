@@ -178,10 +178,8 @@ aside ul li a:hover {
 }
 
 #chart {
-    scale: 0.5;
-    position: absolute;
-    top: 0px;
-    left: -140px;
+    scale: 0.9;
+    position: relative;
 }
 
 .first-user {
