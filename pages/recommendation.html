@@ -70,19 +70,22 @@
         <main>
             <div class="modal">
                 <div class="modal-content">
-                    <span class="close-button">×</span>
-                    <label for="">Title</label><br>
-                    <input type="text" name="" id="table-title-reco" required><br><br>
-                    <label for="">Category</label><br>
-                    <select name="" id="table-cat-reco" required>
-                        <option value="exercise">Exercise</option>
-                        <option value="diet">Diet</option>
-                    </select><br><br>
-                    <label for="">Description</label><br>
-                    <textarea name="" id="table-desc-reco" cols="70" rows="4" required></textarea><br><br>
-                    <label for="">ImageUrl</label><br>
-                    <input type="text" name="" id="table-image-src" required><br><br><br>
-                    <button>Save</button>
+                    <form id="update-form">
+                        <span class="close-button">×</span>
+                        <label for="">Title</label><br>
+                        <input type="text" name="" id="table-title-reco" required><br><br>
+                        <label for="">Category</label><br>
+                        <select name="" id="table-cat-reco" required>
+                            <option value="exercise">Exercise</option>
+                            <option value="diet">Diet</option>
+                        </select><br><br>
+                        <label for="">Description</label><br>
+                        <textarea name="" id="table-desc-reco" cols="55" rows="4" required></textarea><br><br>
+                        <label for="">ImageUrl</label><br>
+                        <input type="text" name="" id="table-image-src" required><br><br><br>
+                        <input type="hidden" name="" id="table-weight-id">
+                        <button type="submit" id="update" style="cursor: pointer;">Update</button>
+                    </form>
                 </div>
             </div>
             <table id="user-table" class="re-commend">
@@ -137,6 +140,72 @@
                 console.error("Error:", error);
             });
         }
+    });
+    </script>
+
+    <!-- Update recommendation -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // ...
+
+        // Function to update the weight loss record
+        function updateWeightLossRecord(event) {
+            event.preventDefault();
+
+            const token = sessionStorage.getItem('token');
+            // Get the weight loss record ID from the hidden input field
+            const weightId = document.getElementById("table-weight-id").value;
+
+            if (token) {
+            // Construct the API endpoint for updating the weight loss record
+            const apiUrl = `https://embraceher.onrender.com`;
+            const updateEndpoint = `/api/v1/recommendation/${weightId}`;
+
+            // Get the updated data from the form fields
+            const updatedTitle = document.getElementById("table-title-reco").value;
+            const updatedCategory = document.getElementById("table-cat-reco").value;
+            const updatedDescription = document.getElementById("table-desc-reco").value;
+            const updatedImageUrl = document.getElementById("table-image-src").value;
+
+            // Create a payload with the updated data
+            const payload = {
+                title: updatedTitle,
+                category: updatedCategory,
+                description: updatedDescription,
+                imgUrl: updatedImageUrl,
+            };
+
+            // Make a PUT request to update the weight loss record
+            fetch(apiUrl + updateEndpoint, {
+                method: "PUT",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json", // Specify JSON content type
+                },
+                body: JSON.stringify(payload), // Convert payload to JSON
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(updatedRecord => {
+                alert('Recommendation record has been successfully updated');
+                console.log("Recommendation record updated", updatedRecord);
+                const modal = document.querySelector(".modal");
+                modal.style.display = "none"; // Close the modal after updating
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+        }
+        // Add an event listener to the "Update" button in the modal
+        const updateButton = document.getElementById("update");
+        updateButton.addEventListener("click", updateWeightLossRecord);
+
+        // ...
     });
     </script>
 
@@ -211,6 +280,7 @@
                         const clickedReco = allmend.data.find(u => u.title === title);
 
                         if (clickedReco) {
+                            modalContent.querySelector("#table-weight-id").value = clickedReco._id;
                             modalContent.querySelector("#table-title-reco").value = clickedReco.title;
                             modalContent.querySelector("#table-cat-reco").value = clickedReco.category;
                             modalContent.querySelector("#table-desc-reco").value = clickedReco.description;

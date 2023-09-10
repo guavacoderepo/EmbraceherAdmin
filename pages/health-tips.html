@@ -70,24 +70,27 @@
         <main>
             <div class="modal">
                 <div class="modal-content">
-                    <span class="close-button">×</span>
-                    <label for="">Title</label><br>
-                    <input type="text" name="" id="table-title-health"><br><br>
-                    <label for="">Category</label><br>
-                    <select name="" id="table-category-health">
-                        <option value="Temperature">Temperature</option>
-                        <option value="Blood pressure">Blood pressure</option>
-                        <option value="Heart rate">Heart Rate</option>
-                    </select><br><br>
-                    <label for="">Status</label><br>
-                    <select name="" id="table-status">
-                        <option value="High">High</option>
-                        <option value="Low">Low</option>
-                        <option value="Average">Average</option>
-                    </select><br><br>                    
-                    <label for="">Description</label><br>
-                    <textarea name="" id="table-description-health" cols="70" rows="4"></textarea><br><br><br>
-                    <button>Save</button>
+                    <form id="update-form">
+                        <span class="close-button">×</span>
+                        <label for="">Title</label><br>
+                        <input type="text" name="" id="table-title-health"><br><br>
+                        <label for="">Category</label><br>
+                        <select name="" id="table-category-health">
+                            <option value="Temperature">Temperature</option>
+                            <option value="Blood pressure">Blood pressure</option>
+                            <option value="Heart rate">Heart Rate</option>
+                        </select><br><br>
+                        <label for="">Status</label><br>
+                        <select name="" id="table-status">
+                            <option value="High">High</option>
+                            <option value="Low">Low</option>
+                            <option value="Average">Average</option>
+                        </select><br><br>                    
+                        <label for="">Description</label><br>
+                        <textarea name="" id="table-description-health" cols="55" rows="4"></textarea><br><br><br>
+                        <input type="hidden" name="" id="table-health-id">
+                        <button type="submit" id="update" style="cursor: pointer;">Update</button>
+                    </form>
                 </div>
             </div>
             <table id="user-table" class="re-commend">
@@ -143,6 +146,71 @@
                 console.error("Error:", error);
             });
         }
+    });
+    </script>
+
+    <!-- Update health tips -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // ...
+
+        // Function to update the weight loss record
+        function updateWeightLossRecord(event) {
+            event.preventDefault();
+
+            const token = sessionStorage.getItem('token');
+            // Get the weight loss record ID from the hidden input field
+            const weightId = document.getElementById("table-health-id").value;
+
+            if (token) {
+            // Construct the API endpoint for updating the weight loss record
+            const apiUrl = `https://embraceher.onrender.com`;
+            const updateEndpoint = `/api/v1/healthtips/${weightId}`;
+
+            // Get the updated data from the form fields
+            const updatedTitle = document.getElementById("table-title-health").value;
+            const updatedCategory = document.getElementById("table-category-health").value;
+            const updatedStatus = document.getElementById("table-status").value;
+            const updatedDescription = document.getElementById("table-description-health").value;
+
+            // Create a payload with the updated data
+            const payload = {
+                title: updatedTitle,
+                category: updatedCategory,
+                status: updatedStatus,
+                description: updatedDescription,
+            };
+
+            // Make a PUT request to update the weight loss record
+            fetch(apiUrl + updateEndpoint, {
+                method: "PUT",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json", // Specify JSON content type
+                },
+                body: JSON.stringify(payload), // Convert payload to JSON
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(updatedRecord => {
+                alert('Health tips record has been successfully updated');
+                console.log("Health tips record updated", updatedRecord);
+                const modal = document.querySelector(".modal");
+                modal.style.display = "none"; // Close the modal after updating
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+        }
+        // Add an event listener to the "Update" button in the modal
+        const updateButton = document.getElementById("update");
+        updateButton.addEventListener("click", updateWeightLossRecord);
+
     });
     </script>
 
@@ -217,6 +285,7 @@
                         const clickedReco = allhealth.data.find(u => u.title === title);
 
                         if (clickedReco) {
+                            modalContent.querySelector("#table-health-id").value = clickedReco._id;
                             modalContent.querySelector("#table-title-health").value = clickedReco.title;
                             modalContent.querySelector("#table-category-health").value = clickedReco.category;
                             modalContent.querySelector("#table-status").value = clickedReco.status;
