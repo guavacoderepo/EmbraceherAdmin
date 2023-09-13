@@ -25,24 +25,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// Code applied on the trash icons to delete a table row
-// document.addEventListener("DOMContentLoaded", function () {
-//     // Get all the trash icons
-//     const trashIcons = document.querySelectorAll(".fas.fa-regular.fa-trash");
+// ADD modal
+document.addEventListener("DOMContentLoaded", function () {
+    const addAny = document.getElementById("add");
+    const modal2 = document.querySelector(".modal2");
+    const closeButton2 = document.querySelector(".close-button2");
 
-//     // Function to remove the table row when trash icon is clicked
-//     function removeTableRow(event) {
-//         const trashIcon = event.target;
-//         const tableRow = trashIcon.closest("tr");
-//         if (confirm("Are you sure you want to delete?") == true) {
-//             tableRow.remove();
-//         } else {
-//             console.log('You cancelled');
-//         }
-//     }
+    function openModal2() {
+        console.log("Opening modal");
+        modal2.style.display = "block";
+    }
 
-//     // Add click event listener to each trash icon
-//     trashIcons.forEach((icon) => {
-//       icon.addEventListener("click", removeTableRow);
-//     });
-// });
+    function closeModal2() {
+        console.log("Closing modal");
+        modal2.style.display = "none";
+    }
+
+    addAny.addEventListener("click", openModal2);
+
+    closeButton2.addEventListener("click", closeModal2);
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal2) {
+            closeModal2();
+        }
+    });
+});

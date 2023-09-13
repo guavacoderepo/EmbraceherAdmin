@@ -88,6 +88,26 @@
                     </form>
                 </div>
             </div>
+            <div class="modal2">
+                <div class="modal-content2">
+                    <form id="update-form2">
+                        <span class="close-button2">×</span>
+                        <label for="">Title</label><br>
+                        <input type="text" name="" id="table-title-reco2" required><br><br>
+                        <label for="">Category</label><br>
+                        <select name="" id="table-cat-reco2" required>
+                            <option value="exercise">Exercise</option>
+                            <option value="diet">Diet</option>
+                        </select><br><br>
+                        <label for="">Description</label><br>
+                        <textarea name="" id="table-desc-reco2" cols="55" rows="4" required></textarea><br><br>
+                        <label for="">ImageUrl</label><br>
+                        <input type="text" name="" id="table-image-src2" required><br><br><br>
+                        <input type="hidden" name="" id="table-weight-id2">
+                        <button type="submit" id="update2" style="cursor: pointer;">Add Recommendation</button>
+                    </form>
+                </div>
+            </div>
             <table id="user-table" class="re-commend">
                 <tr>
                     <th>Title</th>
@@ -388,7 +408,70 @@
     });  
     </script>
 
+    <script>
+    // Add Recommendation
+    document.addEventListener("DOMContentLoaded", function () {
+        // ...
+
+        // Function to update the weight loss record
+        function addRecommendation(event) {
+            event.preventDefault();
+
+            const token = sessionStorage.getItem('token');
+
+            if (token) {
+            // Construct the API endpoint for updating the weight loss record
+            const apiUrl = `https://embraceher.onrender.com`;
+            const updateEndpoint = `/api/v1/recommendation/`;
+
+            // Get the updated data from the form fields
+            const updatedTitle = document.getElementById("table-title-reco2").value;
+            const updatedCategory = document.getElementById("table-cat-reco2").value;
+            const updatedDescription = document.getElementById("table-desc-reco2").value;
+            const updatedImageUrl = document.getElementById("table-image-src2").value;
+
+            // Create a payload with the updated data
+            const payload = {
+                title: updatedTitle,
+                category: updatedCategory,
+                description: updatedDescription,
+                imgUrl: updatedImageUrl,
+            };
+
+            // Make a PUT request to update the weight loss record
+            fetch(apiUrl + updateEndpoint, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json", // Specify JSON content type
+                },
+                body: JSON.stringify(payload), // Convert payload to JSON
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(addRecord => {
+                alert('Recommendation record has been successfully added');
+                console.log("Recommendation record added", addRecord);
+                const modal2 = document.querySelector(".modal2");
+                modal2.style.display = "none"; // Close the modal after updating
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+        }
+        // Add an event listener to the "Update" button in the modal
+        const addButton = document.getElementById("update2");
+        addButton.addEventListener("click", addRecommendation);
+
+        // ...
+    });
     </script>
+
     <script src="../scripts/upload.js"></script>
     <script src="../scripts/modal.js"></script>
 

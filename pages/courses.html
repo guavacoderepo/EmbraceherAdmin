@@ -104,6 +104,38 @@
                     </form>
                 </div>
             </div>
+            <div class="modal2" id="curse2">
+                <div class="modal-content2" id="cursor2">
+                    <form id="update-form2">
+                        <span class="close-button2">×</span>
+                        <label for="table-title2">Title</label><br>
+                        <input type="text" id="table-title2" required><br><br>
+                        <label for="table-category2">Category</label><br>
+                        <select id="table-category2" required>
+                            <option value="">Select category:</option>
+                            <option value="beginners">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="expert">Expert</option>
+                        </select><br><br>
+                        <label for="table-subcategory2">SubCategory</label><br>
+                        <select id="table-subcategory2" required>
+                            <option value="">Select sub-category:</option>
+                            <option value="ab">Ab</option>
+                            <option value="butt">Butt</option>
+                            <option value="leg">Leg</option>
+                            <option value="full">Full</option>
+                            <option value="arm">Arm</option>
+                            <option value="cardio">Cardio</option>
+                        </select><br><br>
+                        <label for="table-description2">Description</label><br>
+                        <textarea id="table-description2" cols="55" rows="6" required></textarea><br><br>
+                        <label for="table-image-src2">ImageUrl</label><br>
+                        <input type="text" id="table-image-src2" required><br><br>
+                        <input type="hidden" name="" id="table-course-id2">
+                        <button type="submit" id="update2" style="cursor: pointer;">Add Course</button>
+                    </form>
+                </div>
+            </div>
             <table id="user-table" class="re-commend course">
                 <tr>
                     <th>Image</th>
@@ -385,6 +417,69 @@
             });
         }
     });  
+    </script>
+
+    <script>
+// Add Course
+document.addEventListener("DOMContentLoaded", function () {
+    // Function to update the weight loss record
+    function addCourse(event) {
+        event.preventDefault();
+
+        const token = sessionStorage.getItem('token');
+
+        if (token) {
+        // Construct the API endpoint for updating the weight loss record
+        const apiUrl = `https://embraceher.onrender.com`;
+        const updateEndpoint = `/api/v1/course/`;
+
+        // Get the updated data from the form fields
+        const addName = document.getElementById("table-title2").value;
+        const addCategory = document.getElementById("table-category2").value;
+        const addSubCategory = document.getElementById("table-subcategory2").value;
+        const addDescription = document.getElementById("table-description2").value;
+        const addImg = document.getElementById("table-image-src2").value;
+
+        // Create a payload with the added data
+        const payload = {
+          name: addName,
+          category: addCategory,
+          subCategory: addSubCategory,
+          description: addDescription,
+          imgUrl: addImg,
+        };
+
+        // Make a POST request to add course
+        fetch(apiUrl + updateEndpoint, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json", // Specify JSON content type
+            },
+            body: JSON.stringify(payload), // Convert payload to JSON
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Request failed with status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(addRecord => {
+            alert('Course record has been successfully added');
+            console.log("Course record added", addRecord);
+            const modal2 = document.querySelector(".modal2");
+            modal2.style.display = "none"; 
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    }
+    }
+    // Add an event listener to the "Add course" button in the modal
+    const addButton = document.getElementById("update2");
+    addButton.addEventListener("click", addCourse);
+
+});
     </script>
     
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script> 
