@@ -31,11 +31,12 @@
             <li><i class="fas fa-tachometer-alt"></i><a href="./dashboard.html">Dashboard</a></li>
             <li><i class="fas fa-user"></i><a href="./users.html">Users</a></li>
             <li><i class="fas fa-cart-plus"></i><a href="./courses.html">Courses</a></li>
-            <li id="index"><i class="fas fa-notes-medical"></i><a href="./health-tips.html">Health Tips</a></li>
+            <li style="font-weight: bolder"><i class="fas fa-notes-medical"></i><a href="./health-tips.html">Health Tips</a></li>
             <li><i class="fas fa-thumbs-up"></i><a href="./recommendation.html">Recommendation</a></li>
             <li><i class="fas fa-dumbbell"></i><a href="./weight-loss.html">Weight Loss</a></li>
         </ul>
-        <button type="button" id="admin-btn">Add an admin</button>
+        <button type="button" id="admin-btn" title="add admin">Add an admin</button>
+        <button type="button" id="log-out" title="log out">Logout</button>
     </aside>  
     <section class="main" id="mainnest">
         <div class="course-head">
@@ -475,6 +476,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const addButton = document.getElementById("update2");
     addButton.addEventListener("click", addHealthTips);
 });
+    </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function handleLogout () {
+            const shouldLogout = window.confirm("Are you sure you want to log out?");
+            if (shouldLogout) {
+                sessionStorage.removeItem('token');
+                window.history.pushState(null, '', './index.html')
+                window.location.href = './index.html'
+            }
+        }
+        const logout = document.getElementById('log-out');
+        logout.addEventListener('click', handleLogout);
+    })
     </script>
 
     <script src="../scripts/upload.js"></script>

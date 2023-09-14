@@ -61,10 +61,10 @@ aside {
     border-right: 1px solid #13a7e7;
 }
 
-#admin-btn {
+#admin-btn, #log-out {
     position: absolute;
-    bottom: 30px;
-    left: 40px;
+    bottom: 5rem;
+    left: 2.7rem;
     background: #13A7E7;
     color: white;
     border: none;
@@ -73,7 +73,11 @@ aside {
     font-size: 12px;
     width: 70%;
     cursor: pointer;
-    border-radius: 30px;
+    border-radius: 15px;
+}
+
+#log-out {
+    bottom: 1rem;
 }
 
 aside ul {
@@ -100,9 +104,9 @@ aside ul li a:hover {
     font-weight: bolder;
 }
 
-#index {
+/* #index {
     font-weight: bolder;
-}
+} */
 
 /* Main body */
 .main {
