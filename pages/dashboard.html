@@ -92,17 +92,25 @@
 
     <script>
     document.addEventListener("DOMContentLoaded", function () {
-        function handleLogout () {
+        function handleLogout() {
             const shouldLogout = window.confirm("Are you sure you want to log out?");
             if (shouldLogout) {
+                // Remove the session token
                 sessionStorage.removeItem('token');
-                window.history.pushState(null, '', './index.html')
-                window.location.href = './index.html'
+                // Redirect to the login page
+                window.location.href = './index.html';
             }
         }
+
         const logout = document.getElementById('log-out');
         logout.addEventListener('click', handleLogout);
-    })
+
+        const protectedPages = ['./courses.html', './dashboard.html', './health-tips.html', './recommendation.html', './users.html', './weight-loss.html', './profile.html'];
+
+        if (protectedPages.includes(window.location.pathname) && !sessionStorage.getItem('token')) {
+            window.location.href = './index.html';
+        }
+    });
     </script>
     <script src="../scripts/stats.js"></script>
     <script src="../scripts/modal.js"></script>

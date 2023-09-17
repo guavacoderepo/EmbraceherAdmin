@@ -99,7 +99,7 @@
                         <label for="table-description">Description</label><br>
                         <textarea id="table-description" cols="55" rows="6" required></textarea><br><br>
                         <label for="table-image-src">ImageUrl</label><br>
-                        <input type="text" id="table-image-src" required><br><br>
+                        <span class="cloud" style="padding-right: 10px; cursor: pointer; color: #13a7e7;">Click to change photo</span><input type="text" id="table-image-src" required><br><br>
                         <input type="hidden" name="" id="table-course-id">
                         <button type="submit" id="update" style="cursor: pointer;">Update</button>
                     </form>
@@ -303,7 +303,7 @@
                     const row = document.createElement('tr');
                     row.setAttribute('data-course-id', course._id);
                     row.innerHTML = `
-                        <td>${course.imgUrl}</td>
+                        <td><img src='${course.imgUrl}' style='width: 40px'/></td>
                         <td>${course.name}</td>
                         <td>${course.category}</td>
                         <td>${course.subCategory}</td>
@@ -485,17 +485,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <script>
     document.addEventListener("DOMContentLoaded", function () {
-        function handleLogout () {
+        function handleLogout() {
             const shouldLogout = window.confirm("Are you sure you want to log out?");
             if (shouldLogout) {
+                // Remove the session token
                 sessionStorage.removeItem('token');
-                window.history.replaceState(null, '', './index.html')
-                window.location.href = './index.html'
+                // Redirect to the login page
+                window.location.href = './index.html';
             }
         }
+
         const logout = document.getElementById('log-out');
         logout.addEventListener('click', handleLogout);
-    })
+
+        const protectedPages = ['./courses.html', './dashboard.html', './health-tips.html', './recommendation.html', './users.html', './weight-loss.html', './profile.html'];
+
+        if (protectedPages.includes(window.location.pathname) && !sessionStorage.getItem('token')) {
+            window.location.href = './index.html';
+        }
+    });
+
     </script>
     
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script> 

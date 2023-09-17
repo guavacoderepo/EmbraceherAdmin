@@ -83,7 +83,7 @@
                         <label for="">Description</label><br>
                         <textarea name="" id="table-desc-reco" cols="55" rows="4" required></textarea><br><br>
                         <label for="">ImageUrl</label><br>
-                        <input type="text" name="" id="table-image-src" required><br><br><br>
+                        <span class="cloud" style="padding-right: 10px; cursor: pointer; color: #13a7e7;">Click to change photo</span><input type="text" id="table-image-src" required><br><br>
                         <input type="hidden" name="" id="table-weight-id">
                         <button type="submit" id="update" style="cursor: pointer;">Update</button>
                     </form>
@@ -274,7 +274,7 @@
                     row.setAttribute('data-mend-id', mend._id);
                     row.innerHTML = `
                         <td>${mend.title}</td>
-                        <td>${mend.imgUrl}</td>
+                        <td><img src='${mend.imgUrl}' style='width: 40px'/></td>
                         <td>${mend.category}</td>
                         <td>${mend.description}</td>
                         <td>
@@ -487,6 +487,7 @@
     })
     </script>
 
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script> 
     <script src="../scripts/upload.js"></script>
     <script src="../scripts/modal.js"></script>
 
