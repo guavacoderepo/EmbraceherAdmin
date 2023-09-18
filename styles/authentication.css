@@ -36,9 +36,26 @@ form {
     margin: auto;
 }
 
-form span {
+form span, label {
     font-size: 14px;
     color: #919090;
+}
+
+#update, #update2 {
+    padding: 10px;
+    font-family: Poppins;
+}
+
+#update-form input, #update-form2 input, #update-form select, #update-form2 select {
+    width: 15rem;
+    height: 2rem;
+    padding-left: 5px;
+    border-radius: 5px;
+    outline: none;
+}
+
+#update-form input:focus, #update-form2 input:focus {
+    border: 1px solid #13A7E7;
 }
 
 form div {

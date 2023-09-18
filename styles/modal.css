@@ -6,7 +6,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.6);
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -18,7 +18,7 @@
     border: 1px solid rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     width: 80%;
-    height: 59%;
+    height: 62%;
     max-width: 600px;
     font-size: 12px;
 }

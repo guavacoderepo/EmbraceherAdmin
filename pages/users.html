@@ -195,11 +195,12 @@
                         <td>${user.token}</td>
                         <td>${new Date(user.createdAt).toLocaleDateString()}</td>
                         <td>
-                            <i class="fas fa-pen" title="Edit"></i>
                             <i class="fas fa-trash" title="Delete"></i>
                         </td>
                     `;
                     table.appendChild(row);
+                    // <i class="fas fa-pen" title="Edit"></i>
+
 
                     // Select the modal and its input fields
                     const modal = document.querySelector(".modal");
