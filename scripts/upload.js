@@ -5,6 +5,7 @@ const myWidget = cloudinary.createUploadWidget({
             console.log('Done! Here is the image info: ', result.info); 
             console.log('Done! Here is the image url: ', result.info.secure_url);
             document.getElementById('table-image-src').value = result.info.secure_url; 
+            document.getElementById('table-image-src2').value = result.info.secure_url; 
         } else {
             console.log('error:', error)
         }
@@ -12,6 +13,10 @@ const myWidget = cloudinary.createUploadWidget({
 );
 
 document.querySelector(".cloud").addEventListener("click", function(){
+    myWidget.open();
+}, false);
+
+document.querySelector(".clou").addEventListener("click", function(){
     myWidget.open();
 }, false);
 
