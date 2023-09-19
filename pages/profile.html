@@ -139,7 +139,15 @@
         }
     });
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const mobileScreenWidth = 768;
 
+        if (window.innerWidth <= mobileScreenWidth) {
+            window.location.href = './no-access.html';
+        }
+    })
+    </script>
     <script src="../scripts/modal.js"></script>
 
 </body>
